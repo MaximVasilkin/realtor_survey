@@ -1,0 +1,9 @@
+Django==4.2.7
+psycopg[binary]==3.1.12
+django-phonenumber-field[phonenumbers]==7.1.0
+django-bootstrap-v5==1.0.11
+django-baton==2.8.0
+django-csp==3.7
+celery==5.3.4
+redis==5.0.1
+gunicorn==21.2.0

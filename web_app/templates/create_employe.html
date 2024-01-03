@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+  <head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+      function onSubmit(token) {
+      document.getElementById("employee-form").submit();
+      }
+    </script>
+  </head>
+
+  <style>
+    @media (max-width: 500px) {
+     .logo {
+      width: 70%;
+      float: bottom
+     }
+    }
+
+    @media (min-width: 501px) {
+     .logo {
+      width: 220px;
+      float: right;
+      padding: 3vh;
+     }
+    }
+
+    @media (min-width: 769px) {
+     .logo {
+      width: 40%;
+      float: right;
+      padding: 1vw;
+     }
+    }
+  </style>
+
+  <body>
+
+    <div class="d-flex flex-column justify-content-center" style="min-height: 100vh;">
+
+      <form id="employee-form" method="post" action="{% url 'create_employe' %}" class="form align-items-center">
+        {% csrf_token %}
+
+        <div class="row justify-content-center align-items-center" style="height: 400; padding: 1vw">
+          <div
+              class="col-lg-8"
+              style="background-color: rgba(255, 255, 255, 1);
+                     padding: 7.5vh;
+                     border-top-left-radius: 5vh;
+                     border-bottom-right-radius: 5vh;"
+          >
+            <img src="/static/survey/images/logo.jpg" alt="Logo" class="mx-auto d-block img-fluid logo">
+
+              <h2
+                  class="text-center text-wrap"
+                  style="border-bottom: 2px solid rgba(238, 125, 1, 255);
+                         padding-top: 8%;
+                         padding-bottom: 6%;"
+              >
+                Анкета соискателя на позицию Риелтор в компанию Сити Travel
+              </h2>
+
+              <div style="padding: 5%"></div>
+              {% bootstrap_form form %}
+              {% buttons %}
+                <button
+                        type="submit"
+                        class="btn btn-primary g-recaptcha"
+                        style="background-color: rgba(19, 68, 147, 255);"
+                        data-sitekey="{{ site_key }}"
+                        data-callback="onSubmit"
+                >
+                  Отправить анкету
+                </button>
+              {% endbuttons %}
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Вакансия Сити Travel</title>
+  </head>
+  <link rel="shortcut icon" href="{% static 'survey/images/favicon.ico' %}" type="image/x-icon">
+  <body>
+  {% bootstrap_form_errors form %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+  </body>
+  <body
+    style="background-image: url({% static 'survey/images/background.jpg' %});
+           background-repeat: no-repeat;
+           background-size: cover;
+           background-attachment: fixed;"
+  >
+    <div style="background-color: rgba(255, 255, 255, 0);">
+      <div class="container" style="padding-top: 50px;">
+        <div class="row">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container" style="padding-top: 250px;">
+        <div class="row justify-content-center align-items-center">
+          <div style="background-color: rgba(255, 255, 255, 1); position: absolute; border-top: 1px solid #773847;">
+            <p
+               style="color: black; font-size: 1.3em; padding: 20px; padding-bottom: 1px"
+               class="fw-light text-center"
+            >
+              Person: {{ phone_footer }}
+            </p>
+            <div style="padding-bottom: 25px" class="d-flex justify-content-center">
+              <a
+                href="https://wa.me/{{ phone_widget }}"
+                style="margin-right: 20px;"
+              >
+                <img
+                    src="/static/survey/images/whatsapp.png"
+                    alt="whatsapp"
+                    style="width: 50px; height: 50px;"
+                >
+              </a>
+              <a
+                href="viber://chat?number=%2B{{ phone_widget }}"
+              >
+                <img
+                    src="/static/survey/images/viber.png"
+                    alt="viber"
+                    style="width: 50px; height: 50px;"
+                >
+              </a>
+            </div>
+            <p class="fw-light fs-6 text-center">&copy; 2023-{% now "Y" %}</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
